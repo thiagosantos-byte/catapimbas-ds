@@ -9,7 +9,7 @@ import {
 import { useAuth } from '../../contexts/AuthContext';
 import { api } from '../../services/api';
 import './Workspace.css';
-
+import NexusMascot from '../../components/NexusMascot';
 const ROLES = {
   SUPERADMIN: 'Superadministrador', ADMIN_INST: 'Administrador institucional',
   COORDENADOR: 'Coordenador', ORIENTADOR: 'Orientador', AVALIADOR: 'Avaliador', ALUNO: 'Aluno',
@@ -284,8 +284,98 @@ function Ranking({ items, role, busy, rankings, setRankings, onRun }) {
   const calculate = () => onRun(async () => { const { data } = await api.post(`/ranking/banca/${bankId}/calcular`); setRankings((old) => ({ ...old, [bankId]: data.resultados || [] })); }, 'Ranking calculado.');
   const publish = () => { if (!window.confirm('Publicar este ranking? Os resultados ficarão disponíveis conforme as permissões da plataforma.')) return; onRun(() => api.patch(`/ranking/banca/${bankId}/publicar`), 'Ranking publicado.'); };
   const playSound = () => { if (!soundEnabled) return; try { const AudioCtx = window.AudioContext || window.webkitAudioContext; if (!AudioCtx) return; const ctx = new AudioCtx(); [523.25, 659.25, 783.99].forEach((frequency, index) => { const oscillator = ctx.createOscillator(); const gain = ctx.createGain(); oscillator.frequency.value = frequency; oscillator.type = 'sine'; gain.gain.setValueAtTime(0.0001, ctx.currentTime + index * 0.16); gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + index * 0.16 + 0.03); gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + index * 0.16 + 0.22); oscillator.connect(gain); gain.connect(ctx.destination); oscillator.start(ctx.currentTime + index * 0.16); oscillator.stop(ctx.currentTime + index * 0.16 + 0.23); }); window.setTimeout(() => ctx.close(), 1000); } catch { /* áudio opcional; a apresentação continua sem som */ } };
-  const startPresentation = () => { setPresentation(true); confetti({ particleCount: 180, spread: 90, origin: { y: 0.65 } }); playSound(); };
-  return <section className="ws-panel"><div className="ws-panel-heading"><div><h3>Classificação dos projetos</h3><p>Calcule, revise e publique os resultados de uma banca.</p></div></div><div className="ws-toolbar"><Field label="Banca"><select value={bankId} onChange={(e) => { setBankId(e.target.value); }}><option value="">Selecione</option>{items.map((b) => <option key={b.id} value={b.id}>{b.nome}</option>)}</select></Field><div className="ws-actions"><button className="ws-button subtle" disabled={!bankId || busy} onClick={load}><RefreshCw size={15}/> Carregar</button>{MANAGEMENT.includes(role) && <button className="ws-button primary" disabled={!bankId || busy} onClick={calculate}><Trophy size={15}/> Calcular</button>}{ADMIN.includes(role) && <button className="ws-button primary" disabled={!bankId || busy || bank?.status === 'PUBLICADA' || !results.length} onClick={publish}><Check size={15}/> Publicar</button>}</div></div>{bank && <div className="ws-callout"><Trophy size={18}/><p>Política de desempate: <strong>{bank.politicaDesempate === 'NOME_PROJETO' ? 'ordem alfabética do projeto' : 'posições compartilhadas'}</strong>. Casas decimais: {bank.casasDecimais ?? 2}. Status: {bank.status}.</p></div>}{results.length > 0 && <div className="ws-actions ws-podium-controls"><button className="ws-button primary" onClick={startPresentation}><Trophy size={15}/> Apresentar pódio</button><button className="ws-button subtle" onClick={() => setSoundEnabled((value) => !value)}>{soundEnabled ? 'Desativar som' : 'Ativar som'}</button>{presentation && <button className="ws-button subtle" onClick={() => { setPresentation(false); setSoundEnabled(false); }}>Encerrar apresentação</button>}</div>}{presentation && results.length > 0 && <div className="ws-podium-stage" role="status"><span>RESULTADO FINAL</span><h3>{bank?.nome || 'Banca de avaliação'}</h3><div className="ws-podium-winners">{[...results].sort((a,b) => Number(a.posicao) - Number(b.posicao)).filter((r) => Number(r.posicao) <= 3).map((r, i) => <article key={r.projetoId || r.id || i} className={`ws-podium-winner place-${r.posicao}`}><span>{Number(r.posicao) === 1 ? '🥇' : Number(r.posicao) === 2 ? '🥈' : '🥉'}</span><strong>{r.nomeProjeto || r.projeto?.nome || 'Projeto'}</strong><small>{Number(r.pontuacaoFinal ?? r.pontuacao_final ?? 0).toLocaleString('pt-BR', { maximumFractionDigits: 4 })} pontos</small><b>{r.posicao}º lugar</b></article>)}</div></div>}{results.length ? <div className="ws-ranking-list">{[...results].sort((a,b) => Number(a.posicao) - Number(b.posicao)).map((r, i) => { const projectName = r.nomeProjeto || r.projeto?.nome || 'Projeto'; return <article key={r.projetoId || r.id || i} className={`ws-ranking-row ${i < 3 ? `podium p${i + 1}` : ''}`}><span className="ws-rank-number">{r.posicao ?? i + 1}</span><div className="ws-grow"><strong>{projectName}</strong><small>{r.quantidadeAvaliacoesValidas != null ? `${r.quantidadeAvaliacoesValidas} avaliações válidas` : (r.status || 'Resultado')}</small></div><strong className="ws-score">{Number(r.pontuacaoFinal ?? r.pontuacao_final ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 4 })}</strong></article>; })}</div> : <Empty title="Nenhum resultado carregado" text="Selecione uma banca e carregue um ranking já calculado ou calcule um novo."/>}</section>;
+  const startPresentation = () => {
+  if (!results.length) return;
+
+  setPresentation(true);
+
+  const reducedMotion =
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches ||
+    document.documentElement.classList.contains(
+      'a11y-reduced-motion'
+    ) ||
+    document.documentElement.classList.contains(
+      'a11y-calm-mode'
+    );
+
+  if (!reducedMotion) {
+    const colors = [
+      '#B9A2FF',
+      '#FFD76A',
+      '#FFFFFF',
+      '#83E6CD',
+      '#F29BCB',
+      '#8AC8FF',
+    ];
+
+    // Primeira explosão: celebração central.
+    confetti({
+      particleCount: 120,
+      spread: 90,
+      startVelocity: 42,
+      gravity: 0.85,
+      origin: { x: 0.5, y: 0.62 },
+      colors,
+      disableForReducedMotion: true,
+    });
+
+    // Segunda explosão: confetes vindos dos lados.
+    window.setTimeout(() => {
+      confetti({
+        particleCount: 45,
+        angle: 60,
+        spread: 65,
+        startVelocity: 38,
+        origin: { x: 0, y: 0.72 },
+        colors,
+        disableForReducedMotion: true,
+      });
+
+      confetti({
+        particleCount: 45,
+        angle: 120,
+        spread: 65,
+        startVelocity: 38,
+        origin: { x: 1, y: 0.72 },
+        colors,
+        disableForReducedMotion: true,
+      });
+    }, 250);
+
+    // Terceira explosão: reforça o destaque dos vencedores.
+    window.setTimeout(() => {
+      confetti({
+        particleCount: 65,
+        spread: 115,
+        startVelocity: 30,
+        gravity: 0.9,
+        origin: { x: 0.5, y: 0.38 },
+        colors,
+        disableForReducedMotion: true,
+      });
+    }, 650);
+  }
+
+  playSound();
+};
+
+  return <section className="ws-panel"><div className="ws-panel-heading"><div><h3>Classificação dos projetos</h3><p>Calcule, revise e publique os resultados de uma banca.</p></div></div><div className="ws-toolbar"><Field label="Banca"><select value={bankId} onChange={(e) => { setBankId(e.target.value); }}><option value="">Selecione</option>{items.map((b) => <option key={b.id} value={b.id}>{b.nome}</option>)}</select></Field><div className="ws-actions"><button className="ws-button subtle" disabled={!bankId || busy} onClick={load}><RefreshCw size={15}/> Carregar</button>{MANAGEMENT.includes(role) && <button className="ws-button primary" disabled={!bankId || busy} onClick={calculate}><Trophy size={15}/> Calcular</button>}{ADMIN.includes(role) && <button className="ws-button primary" disabled={!bankId || busy || bank?.status === 'PUBLICADA' || !results.length} onClick={publish}><Check size={15}/> Publicar</button>}</div></div>{bank && <div className="ws-callout"><Trophy size={18}/><p>Política de desempate: <strong>{bank.politicaDesempate === 'NOME_PROJETO' ? 'ordem alfabética do projeto' : 'posições compartilhadas'}</strong>. Casas decimais: {bank.casasDecimais ?? 2}. Status: {bank.status}.</p></div>}{results.length > 0 && <div className="ws-actions ws-podium-controls"><button className="ws-button primary" onClick={startPresentation}><Trophy size={15}/> Apresentar pódio</button><button className="ws-button subtle" onClick={() => setSoundEnabled((value) => !value)}>{soundEnabled ? 'Desativar som' : 'Ativar som'}</button>{presentation && <button className="ws-button subtle" onClick={() => { setPresentation(false); setSoundEnabled(false); }}>Encerrar apresentação</button>}</div>}{presentation && results.length > 0 && <div className="ws-podium-stage" role="status"><span>RESULTADO FINAL</span><h3>{bank?.nome || 'Banca de avaliação'}</h3><div className="ws-podium-winners">
+    <div className="ws-podium-guide" role="note">
+  <NexusMascot size={82} />
+
+  <div className="ws-podium-guide-message">
+    <strong>Oi, eu sou o Nexus!</strong>
+
+    <p>
+      Vamos celebrar os projetos que se destacaram
+      nesta banca. O pódio mostra os três primeiros
+      colocados conforme os resultados da avaliação.
+    </p>
+  </div>
+</div>
+    {[...results].sort((a,b) => Number(a.posicao) - Number(b.posicao)).filter((r) => Number(r.posicao) <= 3).map((r, i) => <article key={r.projetoId || r.id || i} className={`ws-podium-winner place-${r.posicao}`}><span>{Number(r.posicao) === 1 ? '🥇' : Number(r.posicao) === 2 ? '🥈' : '🥉'}</span><strong>{r.nomeProjeto || r.projeto?.nome || 'Projeto'}</strong><small>{Number(r.pontuacaoFinal ?? r.pontuacao_final ?? 0).toLocaleString('pt-BR', { maximumFractionDigits: 4 })} pontos</small><b>{r.posicao}º lugar</b></article>)}</div></div>}{results.length ? <div className="ws-ranking-list">{[...results].sort((a,b) => Number(a.posicao) - Number(b.posicao)).map((r, i) => { const projectName = r.nomeProjeto || r.projeto?.nome || 'Projeto'; return <article key={r.projetoId || r.id || i} className={`ws-ranking-row ${i < 3 ? `podium p${i + 1}` : ''}`}><span className="ws-rank-number">{r.posicao ?? i + 1}</span><div className="ws-grow"><strong>{projectName}</strong><small>{r.quantidadeAvaliacoesValidas != null ? `${r.quantidadeAvaliacoesValidas} avaliações válidas` : (r.status || 'Resultado')}</small></div><strong className="ws-score">{Number(r.pontuacaoFinal ?? r.pontuacao_final ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 4 })}</strong></article>; })}</div> : <Empty title="Nenhum resultado carregado" text="Selecione uma banca e carregue um ranking já calculado ou calcule um novo."/>}</section>;
 }
 
 function Reports({ items, busy, onRun }) {

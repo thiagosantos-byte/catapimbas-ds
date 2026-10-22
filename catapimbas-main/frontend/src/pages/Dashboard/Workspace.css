@@ -721,3 +721,225 @@ html[data-theme="light"] .ws-footer {
     box-shadow: 10px 0 30px #2415361a;
   }
 }
+
+/* Mascote oficial do Nexus */
+
+.nexus-mascot-art {
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
+
+  filter: drop-shadow(
+    0 5px 9px rgba(130, 101, 210, 0.25)
+  );
+}
+
+.nexus-assistant-avatar {
+  overflow: visible;
+}
+
+.nexus-assistant-trigger .nexus-mascot-art {
+  animation: nexus-mascot-float 3s ease-in-out infinite;
+}
+
+/* Guia do pódio */
+
+.ws-podium-guide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  max-width: 580px;
+  margin: 0 auto 30px;
+  padding: 15px 19px;
+
+  text-align: left;
+
+  background: rgba(146, 116, 213, 0.10);
+  border: 1px solid rgba(185, 162, 255, 0.32);
+  border-radius: 18px;
+}
+
+.ws-podium-guide-message {
+  min-width: 0;
+}
+
+.ws-podium-guide-message strong {
+  display: block;
+  margin-bottom: 6px;
+
+  color: #e5d8ff;
+  font-size: 15px;
+}
+
+.ws-podium-guide-message p {
+  margin: 0;
+
+  color: #d0c5df;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+@keyframes nexus-mascot-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Tema claro */
+
+html[data-theme="light"] .ws-podium-guide {
+  background: #f0eafb;
+  border-color: #d5c4ef;
+}
+
+html[data-theme="light"] .ws-podium-guide-message strong {
+  color: #49336b;
+}
+
+html[data-theme="light"] .ws-podium-guide-message p {
+  color: #5d506f;
+}
+
+/* Movimento reduzido */
+
+@media (prefers-reduced-motion: reduce) {
+  .nexus-assistant-trigger .nexus-mascot-art {
+    animation: none !important;
+  }
+}
+
+html.a11y-reduced-motion .nexus-assistant-trigger .nexus-mascot-art,
+html.a11y-calm-mode .nexus-assistant-trigger .nexus-mascot-art {
+  animation: none !important;
+}
+
+@media (max-width: 520px) {
+  .ws-podium-guide {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .ws-podium-guide .nexus-mascot-art {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* Mascote oficial do Nexus */
+
+.nexus-mascot-art {
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
+
+  filter: drop-shadow(
+    0 5px 9px rgba(130, 101, 210, 0.25)
+  );
+}
+
+.nexus-assistant-avatar {
+  overflow: visible;
+}
+
+.nexus-assistant-trigger .nexus-mascot-art {
+  animation: nexus-mascot-float 3s ease-in-out infinite;
+}
+
+/* Guia do pódio */
+
+.ws-podium-guide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  max-width: 580px;
+  margin: 0 auto 30px;
+  padding: 15px 19px;
+
+  text-align: left;
+
+  background: rgba(146, 116, 213, 0.10);
+  border: 1px solid rgba(185, 162, 255, 0.32);
+  border-radius: 18px;
+}
+
+.ws-podium-guide-message {
+  min-width: 0;
+}
+
+.ws-podium-guide-message strong {
+  display: block;
+  margin-bottom: 6px;
+
+  color: #e5d8ff;
+  font-size: 15px;
+}
+
+.ws-podium-guide-message p {
+  margin: 0;
+
+  color: #d0c5df;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+@keyframes nexus-mascot-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Tema claro */
+
+html[data-theme="light"] .ws-podium-guide {
+  background: #f0eafb;
+  border-color: #d5c4ef;
+}
+
+html[data-theme="light"] .ws-podium-guide-message strong {
+  color: #49336b;
+}
+
+html[data-theme="light"] .ws-podium-guide-message p {
+  color: #5d506f;
+}
+
+/* Movimento reduzido */
+
+@media (prefers-reduced-motion: reduce) {
+  .nexus-assistant-trigger .nexus-mascot-art {
+    animation: none !important;
+  }
+}
+
+html.a11y-reduced-motion .nexus-assistant-trigger .nexus-mascot-art,
+html.a11y-calm-mode .nexus-assistant-trigger .nexus-mascot-art {
+  animation: none !important;
+}
+
+@media (max-width: 520px) {
+  .ws-podium-guide {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .ws-podium-guide .nexus-mascot-art {
+    width: 58px;
+    height: 58px;
+  }
+}

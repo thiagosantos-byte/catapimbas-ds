@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import NexusMascot from './NexusMascot.jsx';
 import {
   Bot,
   MessageCircle,
@@ -202,8 +203,8 @@ export default function NexusAssistant() {
         >
           <header className="nexus-assistant-header">
             <span className="nexus-assistant-avatar">
-              <Bot size={21} aria-hidden="true" />
-            </span>
+  <NexusMascot size={42} />
+</span>
 
             <div className="nexus-assistant-heading">
               <strong>Assistente Nexus</strong>
