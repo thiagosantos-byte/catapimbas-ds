@@ -1,0 +1,710 @@
+/* =========================================
+   NEXUS ACADEMIC — PÁGINAS PÚBLICAS
+   Recuperação, redefinição e apresentação
+   ========================================= */
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+.public-auth,
+.public-home,
+.public-auth *,
+.public-home * {
+  box-sizing: border-box;
+}
+
+.public-auth {
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      ellipse at 10% 0%,
+      rgba(133, 99, 205, 0.24),
+      transparent 46%
+    ),
+    radial-gradient(
+      ellipse at 90% 100%,
+      rgba(102, 77, 159, 0.15),
+      transparent 40%
+    ),
+    #17131d;
+
+  color: #f8f7fc;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.public-card {
+  width: min(100%, 480px);
+  min-width: 0;
+
+  padding: clamp(25px, 5vw, 42px);
+
+  background: linear-gradient(
+    150deg,
+    #262033,
+    #1c1726 80%
+  );
+
+  border: 1px solid rgba(202, 184, 255, 0.2);
+  border-radius: 23px;
+
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.public-brand {
+  display: inline-block;
+
+  color: #fff;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 850;
+  letter-spacing: -0.06em;
+  text-decoration: none;
+}
+
+.public-brand span {
+  color: #b9a3ff;
+}
+
+.public-eyebrow {
+  margin: 29px 0 10px;
+
+  color: #c4b1ff;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+}
+
+.public-card h1 {
+  margin: 0;
+
+  color: #fcfaff;
+
+  font-size: clamp(27px, 5vw, 36px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+
+  text-wrap: balance;
+}
+
+.public-card > p:not(.public-eyebrow) {
+  margin: 16px 0 0;
+
+  color: #d0c7dc;
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Formulários */
+
+.public-card form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 11px;
+
+  margin-top: 25px;
+}
+
+.public-card label {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #f0eafb;
+
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.public-card input,
+.public-card select,
+.public-card textarea {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+
+  padding: 12px 14px;
+
+  background: #120f19;
+  color: #fcfaff;
+
+  border: 1px solid #635473;
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.public-card input::placeholder {
+  color: #bcb0cd;
+  opacity: 1;
+}
+
+.public-card input:focus-visible,
+.public-card select:focus-visible,
+.public-card textarea:focus-visible {
+  outline: 3px solid #ffe66d;
+  outline-offset: 3px;
+
+  border-color: #c4b1ff;
+}
+
+.public-card input:disabled,
+.public-card select:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Botões principais e secundários */
+
+.public-primary,
+.public-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 47px;
+  padding: 12px 18px;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.5;
+
+  text-decoration: none;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.public-primary {
+  border: 1px solid #c4b0ff;
+
+  background: linear-gradient(
+    115deg,
+    #b4a0ff,
+    #8d70d6
+  );
+
+  color: #191326;
+}
+
+.public-card form .public-primary {
+  width: 100%;
+  margin-top: 9px;
+}
+
+.public-primary:hover:not(:disabled) {
+  background: linear-gradient(
+    115deg,
+    #c4b4ff,
+    #a087ea
+  );
+}
+
+.public-primary:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.public-primary.compact {
+  min-height: 42px;
+  margin: 0;
+  padding: 9px 15px;
+}
+
+.public-secondary {
+  background: transparent;
+  color: #f6f1ff;
+  border: 1px solid rgba(210, 193, 255, 0.3);
+}
+
+.public-secondary:hover {
+  background: rgba(185, 163, 255, 0.09);
+  border-color: #b9a3ff;
+}
+
+.public-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px 0;
+
+  background: transparent;
+  border: 0;
+
+  color: #cfbdff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.6;
+
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+
+  cursor: pointer;
+}
+
+.public-link:hover {
+  color: #fff;
+  text-decoration-color: currentColor;
+}
+
+/* Estados de sucesso e erro */
+
+.public-message {
+  margin-top: 18px;
+  padding: 13px 15px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
+}
+
+.public-message.error {
+  background: #47232e;
+  color: #ffe4e9;
+  border-color: #a65369;
+  border-left: 4px solid #ff9cb5;
+}
+
+.public-message.success {
+  background: #193c32;
+  color: #defff1;
+  border-color: #47816f;
+  border-left: 4px solid #86e0bc;
+}
+
+.public-card :where(
+  a,
+  button,
+  input,
+  select,
+  textarea
+):focus-visible {
+  outline: 3px solid #ffe66d;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   APRESENTAÇÃO DO NEXUS
+   ========================================= */
+
+.public-home {
+  min-height: 100vh;
+  padding: 0 clamp(20px, 6vw, 90px);
+
+  background:
+    radial-gradient(
+      ellipse at 50% 15%,
+      rgba(128, 93, 194, 0.14),
+      transparent 50%
+    ),
+    #17131d;
+
+  color: #f8f7fc;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.public-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  padding: 24px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.public-nav > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.public-nav .public-link {
+  margin: 0;
+  padding-inline: 12px;
+  text-decoration: none;
+}
+
+.public-hero {
+  max-width: 900px;
+
+  margin: 0 auto;
+  padding: clamp(75px, 12vw, 140px) 0 100px;
+
+  text-align: center;
+}
+
+.public-hero .public-eyebrow {
+  margin: 0 0 22px;
+}
+
+.public-hero h1 {
+  margin: 0;
+
+  color: #fcfaff;
+
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 780;
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+
+  text-wrap: balance;
+}
+
+.public-hero h1 em {
+  color: #b9a4ff;
+  font-style: normal;
+}
+
+.public-hero > p {
+  max-width: 660px;
+
+  margin: 25px auto 0;
+
+  color: #cbc2d8;
+
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.8;
+}
+
+.public-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 32px;
+}
+
+.public-features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+
+  padding-bottom: 65px;
+}
+
+.public-features article {
+  min-width: 0;
+  padding: 23px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  border: 1px solid rgba(203, 184, 255, 0.16);
+  border-radius: 16px;
+}
+
+.public-features article > svg {
+  width: 25px;
+  height: 25px;
+
+  color: #bdabff;
+}
+
+.public-features h2 {
+  margin: 18px 0 9px;
+
+  color: #f8f5ff;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.public-features p {
+  margin: 0;
+
+  color: #c5bbd2;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.public-home-footer {
+  padding: 24px 0;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: #b6a9c5;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   Cada media query fecha no próprio bloco
+   ========================================= */
+
+@media (max-width: 900px) {
+  .public-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .public-hero {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .public-auth {
+    padding: 15px;
+  }
+
+  .public-card {
+    padding: 25px 20px;
+    border-radius: 18px;
+  }
+
+  .public-card h1 {
+    font-size: 29px;
+  }
+
+  .public-home {
+    padding-inline: 18px;
+  }
+
+  .public-nav {
+    align-items: flex-start;
+  }
+
+  .public-nav > div {
+    gap: 5px;
+  }
+
+  .public-nav .public-link {
+    padding-inline: 8px;
+  }
+
+  .public-hero {
+    padding: 65px 0;
+  }
+
+  .public-hero h1 {
+    font-size: clamp(37px, 11vw, 50px);
+  }
+
+  .public-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .public-hero-actions > * {
+    width: 100%;
+  }
+
+  .public-features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-auth *,
+  .public-home * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================
+   NEXUS — MODO CLARO DAS PÁGINAS PÚBLICAS
+   ========================================= */
+
+html[data-theme="light"] body {
+  background: #f5f6fb;
+  color: #242039;
+}
+
+html[data-theme="light"] .public-home {
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      #e9e0ff 0%,
+      transparent 48%
+    ),
+    #f7f8fc !important;
+
+  color: #242039 !important;
+}
+
+html[data-theme="light"] .public-nav {
+  border-bottom-color: #e1dced;
+}
+
+html[data-theme="light"] .public-brand {
+  color: #261b3b;
+}
+
+html[data-theme="light"] .public-brand span {
+  color: #7953c7;
+}
+
+html[data-theme="light"] .public-eyebrow {
+  color: #6745a9 !important;
+}
+
+html[data-theme="light"] .public-hero h1 {
+  color: #201831;
+}
+
+html[data-theme="light"] .public-hero h1 em {
+  color: #7955c9;
+}
+
+html[data-theme="light"] .public-hero > p {
+  color: #55556a !important;
+}
+
+html[data-theme="light"] .public-features article {
+  background: #ffffff !important;
+  border: 1px solid #e3deed !important;
+  border-radius: 18px;
+
+  box-shadow: 0 8px 26px rgba(44, 30, 77, 0.045);
+
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+html[data-theme="light"] .public-features article:hover {
+  border-color: #c6b5ec !important;
+  box-shadow: 0 14px 34px rgba(76, 48, 128, 0.1);
+  transform: translateY(-3px);
+}
+
+html[data-theme="light"] .public-features svg {
+  color: #7450be !important;
+}
+
+html[data-theme="light"] .public-features h2 {
+  color: #2a2040 !important;
+}
+
+html[data-theme="light"] .public-features p {
+  color: #55566c !important;
+}
+
+html[data-theme="light"] .public-home-footer {
+  border-top-color: #e1dced;
+  color: #656078 !important;
+}
+
+/* Cartão de cadastro e recuperação */
+
+html[data-theme="light"] .public-auth {
+  background:
+    radial-gradient(
+      ellipse at 15% 0%,
+      #e9e0ff,
+      transparent 48%
+    ),
+    #f5f6fb !important;
+
+  color: #29213d !important;
+}
+
+html[data-theme="light"] .public-card {
+  background: rgba(255, 255, 255, 0.96) !important;
+
+  border: 1px solid #e0d9ed !important;
+  border-radius: 22px;
+
+  box-shadow: 0 24px 64px rgba(48, 31, 79, 0.1);
+}
+
+html[data-theme="light"] .public-card h1 {
+  color: #261d38 !important;
+}
+
+html[data-theme="light"] .public-card > p:not(.public-eyebrow) {
+  color: #5d566e !important;
+}
+
+html[data-theme="light"] .public-card label {
+  color: #302440 !important;
+}
+
+html[data-theme="light"] .public-card input,
+html[data-theme="light"] .public-card select,
+html[data-theme="light"] .public-card textarea {
+  background: #ffffff !important;
+  color: #29213d !important;
+  border-color: #bdb3cf !important;
+}
+
+html[data-theme="light"] .public-card input::placeholder {
+  color: #777087 !important;
+  opacity: 1;
+}
+
+html[data-theme="light"] .public-secondary {
+  background: #ffffff !important;
+  color: #56378b !important;
+  border-color: #c7b8e3 !important;
+}
+
+html[data-theme="light"] .public-link {
+  color: #6342a4 !important;
+}
+
+html[data-theme="light"] .public-message.error {
+  background: #fff0f2 !important;
+  color: #8b1d38 !important;
+  border-color: #e9a9b7 !important;
+}
+
+html[data-theme="light"] .public-message.success {
+  background: #e9f8ef !important;
+  color: #185b39 !important;
+  border-color: #a9d9ba !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="light"] .public-features article {
+    transition: none;
+  }
+
+  html[data-theme="light"] .public-features article:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,723 @@
+/* ==========================================
+   WORKSPACE — ACESSIBILIDADE E LEGIBILIDADE
+   ========================================== */
+
+/* Navegação lateral */
+.ws-nav button,
+.ws-logout {
+  min-height: 44px;
+  font-size: 0.875rem;
+}
+
+/* Título principal */
+.ws-topbar h1 {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.ws-topbar small {
+  font-size: 0.75rem;
+  color: #bbb2c8;
+}
+
+/* Textos explicativos */
+.ws-hero p,
+.ws-panel-heading p,
+.ws-empty p,
+.ws-guidance,
+.ws-callout p,
+.ws-field > small {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #c5bbcf;
+}
+
+/* Rótulos dos formulários */
+.ws-field > span {
+  font-size: 0.875rem;
+  color: #e0d8e9;
+}
+
+/* Campos com melhor leitura */
+.ws-field input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+.ws-field select,
+.ws-field textarea,
+.ws-institution-select select {
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+/* Botões com área de toque maior */
+.ws-button,
+.ws-action,
+.ws-icon-button {
+  min-height: 44px;
+  font-size: 0.875rem;
+}
+
+/* Indicadores do painel */
+.ws-metric small {
+  font-size: 0.8125rem;
+  color: #c1b8cc;
+}
+
+/* Tabelas */
+.ws-table-wrap th {
+  font-size: 0.75rem;
+  color: #c7bfd3;
+}
+
+.ws-table-wrap td {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Identificação de status */
+.ws-status {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Pesquisa */
+.ws-search {
+  min-height: 44px;
+}
+
+/* Evita que conteúdos ultrapassem
+   os limites da tela em dispositivos móveis */
+.ws-main,
+.ws-content,
+.ws-panel {
+  min-width: 0;
+}
+
+.ws-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* =========================================
+   NEXUS ACADEMIC — IDENTIDADE DO DASHBOARD
+   ========================================= */
+
+.ws-shell {
+  background:
+    radial-gradient(
+      ellipse at 80% 0%,
+      rgba(113, 81, 171, 0.09),
+      transparent 36%
+    ),
+    #121018;
+}
+
+.ws-sidebar {
+  background: linear-gradient(
+    180deg,
+    #1d1728 0%,
+    #17131d 100%
+  );
+
+  border-right-color: #342743;
+}
+
+.ws-brand-mark {
+  border-radius: 12px 12px 12px 4px;
+  background: linear-gradient(145deg, #bbacff, #8d73db);
+  color: #231731;
+  box-shadow: 0 5px 16px #8d73db24;
+}
+
+.ws-institution {
+  border-left: 3px solid #ad93ff;
+  background: linear-gradient(
+    110deg,
+    #2b213a,
+    #211a2b
+  );
+}
+
+.ws-nav button {
+  min-height: 44px;
+  font-size: 13px;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.ws-nav button.active {
+  background: linear-gradient(
+    100deg,
+    #40305a,
+    #2a2138
+  );
+
+  border-left: 3px solid #c1adff;
+  box-shadow: inset 0 0 0 1px #8c70bd22;
+}
+
+.ws-nav button:focus-visible,
+.ws-button:focus-visible,
+.ws-action:focus-visible,
+.ws-icon-button:focus-visible {
+  outline: 3px solid #ffe66d;
+  outline-offset: 3px;
+}
+
+.ws-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background: rgba(21, 18, 27, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.ws-topbar h1 {
+  letter-spacing: -0.035em;
+  font-size: 24px;
+}
+
+.ws-content {
+  max-width: 1600px;
+}
+
+/* Cabeçalho editorial do painel */
+
+.ws-hero {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 190px;
+  padding: clamp(25px, 3vw, 38px);
+
+  border-color: #59446f;
+
+  background:
+    radial-gradient(
+      circle at 88% 20%,
+      rgba(173, 146, 255, 0.23),
+      transparent 29%
+    ),
+    radial-gradient(
+      circle at 60% 110%,
+      rgba(90, 202, 177, 0.1),
+      transparent 38%
+    ),
+    linear-gradient(115deg, #2b203b, #1b1624);
+}
+
+.ws-hero::after {
+  content: "N";
+
+  position: absolute;
+  right: 24px;
+  bottom: -76px;
+
+  color: rgba(200, 183, 255, 0.06);
+
+  font-family: Manrope, sans-serif;
+  font-size: clamp(160px, 23vw, 270px);
+  font-weight: 800;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+.ws-hero > div,
+.ws-hero > button {
+  position: relative;
+  z-index: 1;
+}
+
+.ws-eyebrow {
+  color: #cfbdff;
+  font-size: 10px;
+}
+
+.ws-hero h2 {
+  max-width: 650px;
+  font-size: clamp(29px, 3vw, 40px);
+  line-height: 1.15;
+}
+
+.ws-hero p {
+  max-width: 580px;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* Cartões de indicadores */
+
+.ws-metrics {
+  gap: 15px;
+}
+
+.ws-metric {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 142px;
+  padding: 20px;
+
+  background: linear-gradient(
+    145deg,
+    #211a2a,
+    #19151f
+  );
+
+  border-color: #383044;
+  border-top-width: 2px;
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.ws-metric:nth-child(1) {
+  border-top-color: #b5a0ff;
+}
+
+.ws-metric:nth-child(2) {
+  border-top-color: #72d7d2;
+}
+
+.ws-metric:nth-child(3) {
+  border-top-color: #81d9ab;
+}
+
+.ws-metric:nth-child(4) {
+  border-top-color: #edbd82;
+}
+
+.ws-metric:hover {
+  transform: translateY(-3px);
+  border-color: #75608e;
+}
+
+.ws-metric strong {
+  font-size: clamp(24px, 2vw, 31px);
+  letter-spacing: -0.04em;
+}
+
+.ws-metric small {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Painéis e gráficos */
+
+.ws-panel {
+  padding: clamp(18px, 2vw, 26px);
+  border-color: #373041;
+  box-shadow: 0 12px 36px #0000000b;
+}
+
+.ws-panel-heading {
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #30283a;
+}
+
+.ws-panel-heading h3,
+.ws-panel > h3 {
+  font-size: 18px;
+  letter-spacing: -0.025em;
+}
+
+.ws-panel-heading p {
+  max-width: 590px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.ws-chart-grid {
+  gap: 18px;
+}
+
+.ws-chart-panel {
+  min-width: 0;
+}
+
+/* Tabelas com melhor leitura */
+
+.ws-table-wrap th {
+  padding: 14px;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+}
+
+.ws-table-wrap td {
+  padding: 16px 14px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.ws-table-wrap tbody tr {
+  transition: background-color 120ms ease;
+}
+
+.ws-table-wrap tbody tr:hover {
+  background: #ffffff06;
+}
+
+.ws-table-wrap td strong {
+  font-size: 13px;
+}
+
+/* Ações rápidas */
+
+.ws-quick-grid button {
+  min-height: 84px;
+  padding: 17px;
+
+  background: linear-gradient(
+    135deg,
+    #241d30,
+    #1b1722
+  );
+
+  border-color: #393045;
+  border-left: 3px solid #a68ce5;
+
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.ws-quick-grid button:nth-child(2) {
+  border-left-color: #70cfc9;
+}
+
+.ws-quick-grid button:nth-child(3) {
+  border-left-color: #d4a7f1;
+}
+
+.ws-quick-grid button:hover {
+  transform: translateY(-2px);
+  border-color: #9a82c7;
+  background: #2a2138;
+}
+
+.ws-quick-grid strong {
+  font-size: 13px;
+}
+
+.ws-quick-grid small {
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* Estados claros mesmo para quem tem daltonismo */
+
+.ws-status {
+  min-height: 25px;
+  padding: 5px 9px;
+  font-size: 10px;
+  border-radius: 7px;
+  font-weight: 750;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ws-metric,
+  .ws-quick-grid button,
+  .ws-table-wrap tbody tr {
+    transition: none;
+  }
+
+  .ws-metric:hover,
+  .ws-quick-grid button:hover {
+    transform: none;
+  }
+}
+
+/* =========================================
+   DASHBOARD — MODO CLARO
+   ========================================= */
+
+html[data-theme="light"] .ws-shell {
+  background: #f4f5fa !important;
+  color: #242037 !important;
+}
+
+html[data-theme="light"] .ws-sidebar {
+  background: #ffffff !important;
+  border-right-color: #e4deec !important;
+}
+
+html[data-theme="light"] .ws-brand b,
+html[data-theme="light"] .ws-institution strong,
+html[data-theme="light"] .ws-user strong {
+  color: #28203b !important;
+}
+
+html[data-theme="light"] .ws-brand small,
+html[data-theme="light"] .ws-institution small,
+html[data-theme="light"] .ws-nav-label,
+html[data-theme="light"] .ws-user small {
+  color: #6f667c !important;
+}
+
+html[data-theme="light"] .ws-institution {
+  background: #f5f0ff !important;
+  border-color: #dcd0f3 !important;
+  border-left-color: #8864cd !important;
+}
+
+html[data-theme="light"] .ws-institution-icon {
+  background: #e9e0fb !important;
+  color: #6543a7 !important;
+}
+
+html[data-theme="light"] .ws-nav button {
+  color: #5c536c !important;
+}
+
+html[data-theme="light"] .ws-nav button:hover {
+  background: #f0ebf9 !important;
+  color: #352346 !important;
+}
+
+html[data-theme="light"] .ws-nav button.active {
+  background: #eee6fb !important;
+  color: #482d79 !important;
+  border-left-color: #8059c5 !important;
+  box-shadow: inset 0 0 0 1px #d9c9f1 !important;
+}
+
+html[data-theme="light"] .ws-sidebar-bottom {
+  border-top-color: #e4deec !important;
+}
+
+html[data-theme="light"] .ws-logout {
+  color: #5c536c !important;
+  background: #ffffff !important;
+  border-color: #ded7e7 !important;
+}
+
+html[data-theme="light"] .ws-main {
+  background: #f4f5fa !important;
+}
+
+html[data-theme="light"] .ws-topbar {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom-color: #e5dfee !important;
+}
+
+html[data-theme="light"] .ws-topbar h1 {
+  color: #272039 !important;
+}
+
+html[data-theme="light"] .ws-topbar small {
+  color: #756a82 !important;
+}
+
+html[data-theme="light"] .ws-icon-button {
+  background: #fff !important;
+  color: #594272 !important;
+  border-color: #dcd3e9 !important;
+}
+
+html[data-theme="light"] .ws-hero {
+  background:
+    radial-gradient(
+      circle at 88% 20%,
+      rgba(153, 121, 226, 0.17),
+      transparent 30%
+    ),
+    linear-gradient(115deg, #eee7fa, #ffffff) !important;
+
+  border-color: #d9cdeb !important;
+}
+
+html[data-theme="light"] .ws-hero h2 {
+  color: #29203e !important;
+}
+
+html[data-theme="light"] .ws-hero p {
+  color: #5c536d !important;
+}
+
+html[data-theme="light"] .ws-eyebrow {
+  color: #66439f !important;
+}
+
+html[data-theme="light"] .ws-metric {
+  background: #ffffff !important;
+  border-color: #e1dbea !important;
+  box-shadow: 0 7px 24px #33234e09;
+}
+
+html[data-theme="light"] .ws-metric:nth-child(1) {
+  border-top-color: #8e6dd0 !important;
+}
+
+html[data-theme="light"] .ws-metric:nth-child(2) {
+  border-top-color: #168e91 !important;
+}
+
+html[data-theme="light"] .ws-metric:nth-child(3) {
+  border-top-color: #328454 !important;
+}
+
+html[data-theme="light"] .ws-metric:nth-child(4) {
+  border-top-color: #ae7024 !important;
+}
+
+html[data-theme="light"] .ws-metric small {
+  color: #635a70 !important;
+}
+
+html[data-theme="light"] .ws-metric strong {
+  color: #29203d !important;
+}
+
+html[data-theme="light"] .ws-metric-icon.violet {
+  background: #eee6fc !important;
+  color: #67439e !important;
+}
+
+html[data-theme="light"] .ws-metric-icon.cyan {
+  background: #e1f5f3 !important;
+  color: #166f72 !important;
+}
+
+html[data-theme="light"] .ws-metric-icon.green {
+  background: #e4f5e9 !important;
+  color: #286f43 !important;
+}
+
+html[data-theme="light"] .ws-metric-icon.orange {
+  background: #fff0dc !important;
+  color: #8a541b !important;
+}
+
+html[data-theme="light"] .ws-panel {
+  background: #ffffff !important;
+  border-color: #e1dbea !important;
+  box-shadow: 0 8px 28px #30203b08;
+}
+
+html[data-theme="light"] .ws-panel-heading {
+  border-bottom-color: #ebe6f1 !important;
+}
+
+html[data-theme="light"] .ws-panel-heading h3,
+html[data-theme="light"] .ws-panel > h3 {
+  color: #29203d !important;
+}
+
+html[data-theme="light"] .ws-panel-heading p {
+  color: #655c72 !important;
+}
+
+html[data-theme="light"] .ws-quick-grid button {
+  background: #ffffff !important;
+  border-color: #e1dbea !important;
+  color: #67439e !important;
+}
+
+html[data-theme="light"] .ws-quick-grid strong {
+  color: #302441 !important;
+}
+
+html[data-theme="light"] .ws-quick-grid small {
+  color: #655c72 !important;
+}
+
+html[data-theme="light"] .ws-quick-grid button:hover {
+  background: #f5f0fc !important;
+  border-color: #bfaadd !important;
+}
+
+html[data-theme="light"] .ws-table-wrap th {
+  background: #f8f6fb !important;
+  color: #62586f !important;
+  border-bottom-color: #e5deed !important;
+}
+
+html[data-theme="light"] .ws-table-wrap td {
+  color: #40364e !important;
+  border-bottom-color: #eee9f4 !important;
+}
+
+html[data-theme="light"] .ws-table-wrap td strong {
+  color: #29203d !important;
+}
+
+html[data-theme="light"] .ws-table-wrap td .ws-subline {
+  color: #6b6179 !important;
+}
+
+html[data-theme="light"] .ws-table-wrap tbody tr:hover {
+  background: #f5f0fc !important;
+}
+
+html[data-theme="light"] .ws-toolbar select,
+html[data-theme="light"] .ws-search,
+html[data-theme="light"] .ws-search input,
+html[data-theme="light"] .ws-field input,
+html[data-theme="light"] .ws-field select,
+html[data-theme="light"] .ws-field textarea,
+html[data-theme="light"] .ws-criterion-row input,
+html[data-theme="light"] .ws-institution-select select {
+  color: #2f2442 !important;
+  background: #ffffff !important;
+  border-color: #c9bfd8 !important;
+}
+
+html[data-theme="light"] .ws-field > span {
+  color: #4e415f !important;
+}
+
+html[data-theme="light"] .ws-field > small,
+html[data-theme="light"] .ws-muted,
+html[data-theme="light"] .ws-guidance {
+  color: #655c72 !important;
+}
+
+html[data-theme="light"] .ws-status {
+  background: #f2edf8 !important;
+  border-color: #d4c8e5 !important;
+  color: #49345f !important;
+}
+
+html[data-theme="light"] .ws-status.status-aprovado,
+html[data-theme="light"] .ws-status.status-publicada,
+html[data-theme="light"] .ws-status.status-ativa,
+html[data-theme="light"] .ws-status.status-submetida {
+  background: #e4f5eb !important;
+  border-color: #afd9bc !important;
+  color: #205f3b !important;
+}
+
+html[data-theme="light"] .ws-status.status-pendente,
+html[data-theme="light"] .ws-status.status-planejada,
+html[data-theme="light"] .ws-status.status-rascunho {
+  background: #fff3df !important;
+  border-color: #e5c18b !important;
+  color: #805018 !important;
+}
+
+html[data-theme="light"] .ws-status.status-recusado,
+html[data-theme="light"] .ws-status.status-suspensa,
+html[data-theme="light"] .ws-status.status-bloqueado,
+html[data-theme="light"] .ws-status.status-cancelada {
+  background: #fff0f2 !important;
+  border-color: #e3b4bf !important;
+  color: #86283e !important;
+}
+
+html[data-theme="light"] .ws-footer {
+  background: #f4f5fa !important;
+  border-top-color: #e5dfee !important;
+  color: #716681 !important;
+}
+
+@media (max-width: 700px) {
+  html[data-theme="light"] .ws-sidebar {
+    background: #ffffff !important;
+    box-shadow: 10px 0 30px #2415361a;
+  }
+}

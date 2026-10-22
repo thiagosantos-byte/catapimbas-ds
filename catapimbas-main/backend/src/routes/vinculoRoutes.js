@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { solicitarIngresso, decidirIngresso, listarPorInstituicao, listarSolicitacoesGlobais, designarAdministradorInstitucional, revogarVinculo, solicitarNovamente } from '../controllers/vinculoController.js';
+import { autenticarToken } from '../middlewares/authMiddleware.js';
+import { verificarEscopoInstituicao, verificarAcessoAoVinculo, exigirPapelGlobal, papeis } from '../middlewares/tenantMiddleware.js';
+const router = Router();
+router.post('/', autenticarToken, solicitarIngresso);
+router.post('/administrador-institucional', autenticarToken, exigirPapelGlobal(['SUPERADMIN']), designarAdministradorInstitucional);
+router.get('/administracao/solicitacoes', autenticarToken, exigirPapelGlobal(['SUPERADMIN']), listarSolicitacoesGlobais);
+router.patch('/:id/decisao', autenticarToken, verificarAcessoAoVinculo(papeis.admin), decidirIngresso);
+router.patch('/:id/revogar', autenticarToken, verificarAcessoAoVinculo(papeis.admin), revogarVinculo);
+router.post('/:id/solicitar-novamente', autenticarToken, solicitarNovamente);
+router.get('/instituicao/:instituicaoId', autenticarToken, verificarEscopoInstituicao(papeis.gestao), listarPorInstituicao);
+export default router;

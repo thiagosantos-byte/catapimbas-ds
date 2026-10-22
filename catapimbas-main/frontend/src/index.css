@@ -1,0 +1,129 @@
+/* ACESSIBILIDADE GLOBAL DO NEXUS */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.5;
+}
+
+/* Links identificáveis */
+
+a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Campos com área de interação adequada */
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  min-height: 44px;
+}
+
+/* FOCO VISÍVEL EM TODAS AS TELAS */
+
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [tabindex]
+):focus-visible {
+  outline: 3px solid #ffce45 !important;
+  outline-offset: 3px !important;
+}
+
+/* CONTRASTE DO SISTEMA OPERACIONAL */
+
+@media (prefers-contrast: more) {
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea
+  ) {
+    border-width: 2px;
+  }
+}
+
+/* CONTRASTE FORÇADO DO SISTEMA */
+
+@media (forced-colors: active) {
+  :where(
+    a,
+    button,
+    input,
+    select,
+    textarea
+  ):focus-visible {
+    outline: 3px solid Highlight !important;
+  }
+}
+
+/* =========================================
+   LINK ACESSÍVEL PARA PULAR AO CONTEÚDO
+   ========================================= */
+
+/* Escondido visualmente, mas disponível por teclado */
+.skip-to-content:not(:focus):not(:focus-visible) {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+
+  width: 1px !important;
+  height: 1px !important;
+
+  margin: -1px !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Aparece quando a pessoa navega pelo teclado */
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  position: fixed !important;
+  z-index: 20000 !important;
+
+  top: 14px !important;
+  left: 14px !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 13px 19px !important;
+
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+
+  background: #ffffff !important;
+  color: #241638 !important;
+
+  border: 2px solid #8664d9 !important;
+  border-radius: 12px !important;
+
+  box-shadow: 0 8px 30px #0003 !important;
+
+  font-family: Inter, "Segoe UI", sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 750 !important;
+  line-height: 1.5 !important;
+
+  text-decoration: none !important;
+
+  outline: 3px solid #ffe66d !important;
+  outline-offset: 3px !important;
+}

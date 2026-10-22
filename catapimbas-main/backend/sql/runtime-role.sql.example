@@ -1,0 +1,18 @@
+-- OPCIONAL: usuário SQL de execução com menos privilégios que o postgres.
+-- Execute somente após revisão, em uma sessão de administrador Supabase.
+-- Troque a senha por um segredo aleatório e use-a URL-encoded na DATABASE_URL.
+-- Não execute este arquivo sem entender o modelo de privilégios do Supabase.
+
+CREATE ROLE nexus_api LOGIN PASSWORD 'REPLACE_WITH_A_NEW_RANDOM_PASSWORD';
+GRANT CONNECT ON DATABASE postgres TO nexus_api;
+GRANT USAGE ON SCHEMA public TO nexus_api;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO nexus_api;
+-- Se os privilégios padrão de tipos tiverem sido restringidos, conceda USAGE
+-- explicitamente aos ENUMs utilizados após revisá-los individualmente.
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+  GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO nexus_api;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+  GRANT USAGE ON TYPES TO nexus_api;
+
+-- Este exemplo reduz algumas permissões, mas NÃO habilita RLS nem substitui
+-- testes de isolamento multi-tenant no backend. Não exponha o banco ao navegador.

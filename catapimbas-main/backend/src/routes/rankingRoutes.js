@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { calcularRankingBanca, obterRankingBanca, publicarRanking } from '../controllers/rankingController.js';
+import { autenticarToken } from '../middlewares/authMiddleware.js';
+import { verificarEscopoRecurso } from '../middlewares/tenantMiddleware.js';
+const router = Router();
+router.use(autenticarToken);
+router.post('/banca/:bancaId/calcular', verificarEscopoRecurso('banca', ['SUPERADMIN', 'ADMIN_INST', 'COORDENADOR']), calcularRankingBanca);
+router.get('/banca/:bancaId', verificarEscopoRecurso('banca'), obterRankingBanca);
+router.patch('/banca/:bancaId/publicar', verificarEscopoRecurso('banca', ['SUPERADMIN', 'ADMIN_INST']), publicarRanking);
+export default router;

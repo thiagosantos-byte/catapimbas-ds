@@ -1,0 +1,33 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend-tests-and-frontend-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+          cache: npm
+          cache-dependency-path: |
+            backend/package-lock.json
+            frontend/package-lock.json
+      - name: Install backend dependencies
+        run: npm ci --prefix backend
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+      - name: Backend tests
+        run: npm test --prefix backend
+      - name: Frontend lint
+        run: npm run lint --prefix frontend
+      - name: Frontend production build
+        run: npm run build --prefix frontend
+        env:
+          VITE_API_URL: https://api.example.invalid/api

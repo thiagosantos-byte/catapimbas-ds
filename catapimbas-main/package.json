@@ -1,0 +1,31 @@
+{
+  "name": "catapimbas",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/gustavorosario721/catapimbas#readme",
+  "bugs": {
+    "url": "https://github.com/gustavorosario721/catapimbas/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavorosario721/catapimbas.git"
+  },
+  "license": "ISC",
+  "author": "Gustavo",
+  "type": "module",
+  "main": "none",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "test:backend": "npm test --prefix backend",
+    "build": "npm run build --prefix frontend",
+    "test": "npm test --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=22.12.0 <23.0.0"
+  }
+}

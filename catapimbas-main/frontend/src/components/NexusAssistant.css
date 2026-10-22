@@ -1,0 +1,484 @@
+.nexus-assistant,
+.nexus-assistant * {
+  box-sizing: border-box;
+}
+
+.nexus-assistant {
+  position: fixed;
+  z-index: 9998;
+  right: 18px;
+  bottom: 82px;
+  color: #f8f5ff;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.nexus-assistant-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid #bba7ff;
+  border-radius: 999px;
+  background: #322444;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  box-shadow: 0 8px 28px #0004;
+  cursor: pointer;
+}
+
+.nexus-assistant-trigger:hover {
+  background: #45305f;
+}
+
+.nexus-assistant-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(420px, calc(100vw - 28px));
+  max-height: min(70vh, 680px);
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid #514462;
+  border-radius: 18px;
+  background: #19151f;
+  color: #f8f5ff;
+  box-shadow: 0 18px 64px #0008;
+}
+
+.nexus-assistant-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 16px;
+  border-bottom: 1px solid #ffffff20;
+}
+
+.nexus-assistant-avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 1px solid #8f7cba;
+  border-radius: 13px;
+  background: #30243e;
+  color: #d5c7ff;
+}
+
+.nexus-assistant-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.nexus-assistant-heading strong,
+.nexus-assistant-heading small {
+  display: block;
+}
+
+.nexus-assistant-heading strong {
+  font-size: 14px;
+}
+
+.nexus-assistant-heading small {
+  margin-top: 4px;
+  color: #c4b8d2;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.nexus-assistant-close {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nexus-assistant-messages {
+  display: grid;
+  gap: 12px;
+  padding: 15px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.nexus-assistant-message {
+  padding: 13px;
+  border: 1px solid #3a3047;
+  border-radius: 13px;
+  background: #241d30;
+}
+
+.nexus-assistant-message.user {
+  background: #392a53;
+  border-color: #66528b;
+}
+
+.nexus-assistant-message p {
+  margin: 0;
+  color: #f5f0fc;
+  font-size: 13px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.nexus-assistant-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  margin-top: 9px;
+  padding: 5px 8px;
+  border: 1px solid #685780;
+  border-radius: 8px;
+  background: transparent;
+  color: #e0d4ff;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.nexus-assistant-thinking {
+  color: #d7c9ff;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.nexus-assistant-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 0 15px 12px;
+}
+
+.nexus-assistant-suggestions button {
+  min-height: 35px;
+  padding: 6px 9px;
+  border: 1px solid #625275;
+  border-radius: 999px;
+  background: transparent;
+  color: #ded1f7;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.nexus-assistant-suggestions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nexus-assistant-form {
+  display: grid;
+  gap: 9px;
+  padding: 13px 15px;
+  border-top: 1px solid #ffffff20;
+  background: #211b2b;
+}
+
+.nexus-assistant-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 55px;
+  resize: vertical;
+  padding: 11px;
+  border: 1px solid #655477;
+  border-radius: 10px;
+  background: #120f19;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.nexus-assistant-form textarea::placeholder {
+  color: #b9aec8;
+}
+
+.nexus-assistant-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nexus-assistant-actions > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid #6a597e;
+  border-radius: 9px;
+  background: #30263d;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.nexus-assistant-actions > button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nexus-assistant-actions .nexus-assistant-send {
+  margin-left: auto;
+  border-color: #baa5ff;
+  background: #b5a0f5;
+  color: #21172e;
+  font-weight: 750;
+}
+
+.nexus-assistant-status {
+  flex: 1;
+  min-width: 0;
+  color: #d4c8e5;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.nexus-assistant-privacy {
+  margin: 0;
+  padding: 0 15px 14px;
+  background: #211b2b;
+  color: #c3b8d0;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.nexus-assistant :focus-visible {
+  outline: 3px solid #ffe66d;
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* O assistente também acompanha o modo claro. */
+
+html[data-theme="light"] .nexus-assistant-panel {
+  background: #fff;
+  color: #281e36;
+  border-color: #d8cde7;
+  box-shadow: 0 18px 64px #30203b25;
+}
+
+html[data-theme="light"] .nexus-assistant-header,
+html[data-theme="light"] .nexus-assistant-form {
+  border-color: #e2d9eb;
+  background: #f9f7fc;
+}
+
+html[data-theme="light"] .nexus-assistant-heading strong {
+  color: #281e36;
+}
+
+html[data-theme="light"] .nexus-assistant-heading small,
+html[data-theme="light"] .nexus-assistant-privacy {
+  color: #665773;
+}
+
+html[data-theme="light"] .nexus-assistant-message {
+  background: #f2edf9;
+  border-color: #e1d6ee;
+}
+
+html[data-theme="light"] .nexus-assistant-message p {
+  color: #30223e;
+}
+
+html[data-theme="light"] .nexus-assistant-message.user {
+  background: #e6ddf8;
+  border-color: #c6b5e8;
+}
+
+html[data-theme="light"] .nexus-assistant-suggestions button {
+  background: #fff;
+  border-color: #cfc2df;
+  color: #39294c;
+}
+
+html[data-theme="light"] .nexus-assistant-form textarea {
+  background: #fff;
+  color: #281e36;
+  border-color: #c9bdd8;
+}
+
+html[data-theme="light"] .nexus-assistant-read,
+html[data-theme="light"] .nexus-assistant-actions > button {
+  background: #f2edf8;
+  color: #30213f;
+  border-color: #cfc2df;
+}
+
+html[data-theme="light"] .nexus-assistant-actions .nexus-assistant-send {
+  background: #8264cb;
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .nexus-assistant {
+    right: 10px;
+    bottom: 76px;
+  }
+
+  .nexus-assistant-panel {
+    width: calc(100vw - 20px);
+    max-height: min(68vh, 620px);
+  }
+
+  .nexus-assistant-trigger {
+    min-height: 45px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   ASSISTENTE NEXUS — PAINEL DE CONVERSA
+   ========================================= */
+
+.nexus-assistant {
+  right: 18px;
+  bottom: 82px;
+  z-index: 9998;
+}
+
+.nexus-assistant-panel {
+  display: flex;
+  flex-direction: column;
+
+  width: min(430px, calc(100vw - 28px));
+  height: min(680px, calc(100dvh - 125px));
+  min-height: min(380px, calc(100dvh - 125px));
+  max-height: none;
+
+  overflow: hidden;
+
+  margin-bottom: 12px;
+  border-radius: 18px;
+}
+
+/* A conversa ocupa o espaço disponível
+   e rola sem empurrar os controles */
+
+.nexus-assistant-messages {
+  flex: 1 1 auto;
+  min-height: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  padding: 16px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #76618f transparent;
+}
+
+/* Cada mensagem respeita os limites do painel */
+
+.nexus-assistant-message {
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.nexus-assistant-message p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Sugestões organizadas e sem sobreposição */
+
+.nexus-assistant-suggestions {
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  max-height: 100px;
+  overflow-y: auto;
+
+  padding: 8px 15px 12px;
+
+  border-top: 1px solid #ffffff18;
+}
+
+.nexus-assistant-suggestions button {
+  max-width: 100%;
+  min-height: 36px;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  line-height: 1.4;
+}
+
+/* Área de envio fixa dentro do painel */
+
+.nexus-assistant-form {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.nexus-assistant-form textarea {
+  width: 100%;
+  min-width: 0;
+  max-height: 120px;
+}
+
+.nexus-assistant-privacy {
+  flex: 0 0 auto;
+
+  max-height: 56px;
+  overflow-y: auto;
+}
+
+/* Adaptação a telas pequenas */
+
+@media (max-width: 480px) {
+  .nexus-assistant {
+    right: 10px;
+    bottom: 76px;
+  }
+
+  .nexus-assistant-panel {
+    width: calc(100vw - 20px);
+    height: min(620px, calc(100dvh - 115px));
+    min-height: min(360px, calc(100dvh - 115px));
+  }
+
+  .nexus-assistant-messages {
+    padding: 12px;
+  }
+
+  .nexus-assistant-suggestions {
+    max-height: 90px;
+    padding: 8px 12px;
+  }
+
+  .nexus-assistant-actions {
+    flex-wrap: wrap;
+  }
+}
